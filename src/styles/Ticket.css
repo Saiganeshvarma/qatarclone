@@ -1,90 +1,67 @@
-/* src/styles/Ticket.css */
-
 .ticket-container {
-    max-width: 600px; /* Maximum width for the ticket summary */
-    margin: 30px auto; /* Center the ticket summary */
-    padding: 20px; /* Padding around the ticket summary */
-    background-color: #ffffff; /* Background color for the ticket summary */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Shadow effect */
-    font-family: Arial, sans-serif; /* Font for the summary */
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    color: #333;
 }
 
-h2 {
+.ticket-container h1 {
+    color: #660033;
     text-align: center;
-    color: #007BFF; /* Primary color for headings */
-    margin-bottom: 20px;
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }
 
-.flight-details,
-.passenger-details {
-    margin-bottom: 30px; /* Space between sections */
+.flight-details, .passenger-details {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
 }
 
-h3 {
-    color: #333; /* Darker color for section headers */
-    margin-bottom: 10px;
-    border-bottom: 2px solid #007BFF; /* Underline for section headers */
-    padding-bottom: 5px; /* Padding below the header */
+.flight-details h2, .passenger-details h2 {
+    color: #660033;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
-.detail-item {
-    display: flex; /* Flexbox for alignment */
-    justify-content: space-between; /* Space between label and value */
-    padding: 10px 0; /* Padding for each detail item */
-    border-bottom: 1px solid #e0e0e0; /* Bottom border for detail items */
-}
-
-.detail-item:last-child {
-    border-bottom: none; /* Remove border from last item */
-}
-
-span {
-    color: #555; /* Color for detail values */
-}
-
-.button-container {
-    display: flex; /* Flexbox for buttons */
-    justify-content: space-between; /* Space between buttons */
-    margin-top: 20px; /* Margin on top of buttons */
-}
-
-button {
-    background-color: #007BFF; /* Button color */
-    color: white; /* Text color */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners */
-    padding: 12px 20px; /* Padding for the button */
-    font-size: 16px; /* Font size for button text */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s; /* Smooth transition for hover */
-    flex: 1; /* Make buttons flexible */
-    margin-right: 10px; /* Space between buttons */
-}
-
-button:last-child {
-    margin-right: 0; /* Remove right margin for the last button */
+.flight-details p, .passenger-details p {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    color: #333;
 }
 
 .download-button {
-    background-color: #28a745; /* Green color for download button */
+    background-color: #660033;
+    color: #fff;
+    padding: 0.75rem;
+    width: 100%;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    transition: background-color 0.3s ease;
 }
 
 .download-button:hover {
-    background-color: #218838; /* Darker green on hover */
+    background-color: #4d0026;
 }
 
-button:hover {
-    background-color: #0056b3; /* Darker blue on hover for other button */
-}
-
-@media (max-width: 768px) {
+/* Responsive Styling */
+@media (max-width: 480px) {
     .ticket-container {
-        margin: 15px; /* Reduce margins on smaller screens */
-        padding: 15px; /* Reduce padding on smaller screens */
+        padding: 1.5rem;
     }
 
-    button {
-        font-size: 14px; /* Smaller button text on mobile */
+    .download-button {
+        font-size: 0.9rem;
+        padding: 0.6rem;
     }
 }

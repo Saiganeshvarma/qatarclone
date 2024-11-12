@@ -20,11 +20,12 @@ function Search() {
             [name]: value,
         }));
     };
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         navigate('/results', { state: formData });
     };
+    
     return (
         <div className="SearchContainer">
             <div className='Header-tab'>

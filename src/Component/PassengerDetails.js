@@ -33,9 +33,12 @@ function PassengerDetails() {
 
     const handleSubmit = (e) => {
         e.preventDefault(); // Prevent the default form submission
-        const flightDetails = selectedFlightDetails[0]; // Assuming you want the first flight
-        navigate('/ticket', { state: { selectedFlightDetails: flightDetails, ...passengerInfo } });
+        navigate('/payment', { state: { selectedFlightDetails, ...passengerInfo } });
     };
+    const handleSelectFlight = (flight) => {
+        navigate('/passenger-details', { state: { selectedFlightDetails: [flight] } });
+    };
+    
 
     return (
         <div className="passenger-details-container">
@@ -155,7 +158,7 @@ function PassengerDetails() {
                             onChange={handleChange}
                         ></textarea>
                     </div>
-                    <button type="submit" className="confirm-button">Confirm Booking</button>
+                    <button type="submit" className="confirm-button">Proceed to Payment</button>
                 </form>
             </div>
         </div>

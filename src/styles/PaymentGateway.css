@@ -1,0 +1,79 @@
+.payment-gateway {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.payment-gateway h2 {
+    color: #660033; /* Qatar Airways deep burgundy */
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.payment-gateway p {
+    color: #333;
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.payment-form .form-group {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.payment-form label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.payment-form input {
+    padding: 0.75rem;
+    font-size: 1rem;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.payment-form input:focus {
+    border-color: #660033;
+}
+
+.pay-button {
+    background-color: #660033;
+    color: white;
+    padding: 0.75rem;
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.pay-button:hover {
+    background-color: #4d0026; /* Darker burgundy for hover */
+}
+
+/* Responsive Styling */
+@media (max-width: 480px) {
+    .payment-gateway {
+        padding: 1.5rem;
+    }
+
+    .payment-form input, .pay-button {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+}

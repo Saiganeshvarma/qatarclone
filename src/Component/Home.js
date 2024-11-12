@@ -22,11 +22,11 @@ function Home() {
                     <div className='Search'>
                         <p className='Help'>Help</p>
                         <img className="search" src={search} alt='logo'></img>
-                        <p className='EN'>EN</p>
+
                     </div>
                     <div className='LoginContainer'>
                         <p>Login</p>
-                        <p>| SignUp</p>
+                        <p>SignUp</p>
                     </div>
                 </div>
                 <div className='HeroContent'>

@@ -1,111 +1,217 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import '../styles/FlightResults.css';
 
-function Results() {
+const Results = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const [flights, setFlights] = useState([]);
-    const [filteredFlights, setFilteredFlights] = useState([]);
-    const [selectedFlights, setSelectedFlights] = useState([]);
 
-    // Memoizing searchCriteria with default values
-    const searchCriteria = useMemo(() => ({
-        from: location.state?.from || 'New York',
-        to: location.state?.to || 'Los Angeles',
-        departure: location.state?.departure || '2024-11-10',
-        return: location.state?.return || '2024-11-17',
-        options: location.state?.options || 'round-trip',
-        class: location.state?.class || 'Economy'
-    }), [location.state]);
+    // Access the user-input data (formData) passed via navigate state from the Search component
+    const { from, to } = location.state || {};
 
-    useEffect(() => {
-        // Fetch flight data
-        fetch('/flights.json')
-            .then((response) => response.json())
-            .then((data) => setFlights(data))
-            .catch((error) => console.error('Error fetching flight data:', error));
-    }, []);
-
-    useEffect(() => {
-        // Filter flights based on search criteria
-        const results = flights.filter(flight => {
-            const fromMatch = searchCriteria.from ? flight.from.toLowerCase() === searchCriteria.from.toLowerCase() : true;
-            const toMatch = searchCriteria.to ? flight.to.toLowerCase() === searchCriteria.to.toLowerCase() : true;
-            const departureMatch = searchCriteria.departure ? flight.departure === searchCriteria.departure : true;
-            const returnMatch = searchCriteria.options === 'one-way' ? !searchCriteria.return : flight.return === searchCriteria.return;
-            const classMatch = searchCriteria.class ? flight.class.toLowerCase() === searchCriteria.class.toLowerCase() : true;
-
-            return fromMatch && toMatch && departureMatch && returnMatch && classMatch;
-        });
-
-        setFilteredFlights(results);
-    }, [flights, searchCriteria]);
-
-    const handleFlightSelect = (flightId) => {
-        setSelectedFlights((prevSelected) =>
-            prevSelected.includes(flightId)
-                ? prevSelected.filter(id => id !== flightId)
-                : [...prevSelected, flightId]
-        );
-    };
-
-    const handleNext = () => {
-        if (selectedFlights.length === 0) {
-            alert("Please select at least one flight to proceed.");
-            return;
+    const flightData = [
+        {
+            airline: "Qatar Airways",
+            departureTime: "03:30",
+            arrivalTime: "13:25",
+            stops: "1 Stop, 14h 25m",
+            from: "HYD",
+            to: "ARN",
+            fareEconomy: "₹249,498",
+            fareBusiness: "₹736,532",
+            specialOffer: true,
+            date: "Fri, 10 Jan 2025"
+        },
+        {
+            airline: "Qatar Airways",
+            departureTime: "06:50",
+            arrivalTime: "16:10",
+            stops: "1 Stop, 13h 20m",
+            from: "HYD",
+            to: "ARN",
+            fareEconomy: "₹255,320",
+            fareBusiness: "₹750,100",
+            specialOffer: false,
+            date: "Fri, 10 Jan 2025"
+        },
+        {
+            airline: "Qatar Airways",
+            departureTime: "10:15",
+            arrivalTime: "20:00",
+            stops: "2 Stops, 18h 45m",
+            from: "HYD",
+            to: "ARN",
+            fareEconomy: "₹261,000",
+            fareBusiness: "₹780,450",
+            specialOffer: true,
+            date: "Fri, 10 Jan 2025"
+        },
+        {
+            airline: "Qatar Airways",
+            departureTime: "15:00",
+            arrivalTime: "01:30 +1",
+            stops: "1 Stop, 12h 30m",
+            from: "HYD",
+            to: "ARN",
+            fareEconomy: "₹248,500",
+            fareBusiness: "₹730,300",
+            specialOffer: false,
+            date: "Fri, 10 Jan 2025"
+        },
+        {
+            airline: "Qatar Airways",
+            departureTime: "18:45",
+            arrivalTime: "04:30 +1",
+            stops: "1 Stop, 12h 45m",
+            from: "HYD",
+            to: "ARN",
+            fareEconomy: "₹252,200",
+            fareBusiness: "₹745,000",
+            specialOffer: true,
+            date: "Fri, 10 Jan 2025"
+        },
+        {
+            airline: "Qatar Airways",
+            departureTime: "22:15",
+            arrivalTime: "10:45 +1",
+            stops: "2 Stops, 16h 30m",
+            from: "HYD",
+            to: "ARN",
+            fareEconomy: "₹260,000",
+            fareBusiness: "₹790,000",
+            specialOffer: false,
+            date: "Fri, 10 Jan 2025"
+        },
+        {
+            airline: "Qatar Airways",
+            departureTime: "01:30",
+            arrivalTime: "11:45",
+            stops: "1 Stop, 14h 15m",
+            from: "HYD",
+            to: "ARN",
+            fareEconomy: "₹247,900",
+            fareBusiness: "₹735,000",
+            specialOffer: false,
+            date: "Fri, 10 Jan 2025"
+        },
+        {
+            airline: "Qatar Airways",
+            departureTime: "05:00",
+            arrivalTime: "15:30",
+            stops: "2 Stops, 16h 30m",
+            from: "HYD",
+            to: "ARN",
+            fareEconomy: "₹255,000",
+            fareBusiness: "₹755,000",
+            specialOffer: true,
+            date: "Fri, 10 Jan 2025"
+        },
+        // Additional flights added below
+        {
+            airline: "Qatar Airways",
+            departureTime: "02:45",
+            arrivalTime: "12:30",
+            stops: "1 Stop, 13h 45m",
+            from: "HYD",
+            to: "ARN",
+            fareEconomy: "₹248,000",
+            fareBusiness: "₹730,000",
+            specialOffer: true,
+            date: "Fri, 10 Jan 2025"
+        },
+        {
+            airline: "Qatar Airways",
+            departureTime: "07:20",
+            arrivalTime: "17:00",
+            stops: "2 Stops, 14h 40m",
+            from: "HYD",
+            to: "ARN",
+            fareEconomy: "₹259,500",
+            fareBusiness: "₹765,300",
+            specialOffer: false,
+            date: "Fri, 10 Jan 2025"
+        },
+        {
+            airline: "Qatar Airways",
+            departureTime: "12:00",
+            arrivalTime: "23:50",
+            stops: "1 Stop, 15h 50m",
+            from: "HYD",
+            to: "ARN",
+            fareEconomy: "₹257,000",
+            fareBusiness: "₹760,000",
+            specialOffer: true,
+            date: "Fri, 10 Jan 2025"
+        },
+        {
+            airline: "Qatar Airways",
+            departureTime: "19:30",
+            arrivalTime: "06:15 +1",
+            stops: "2 Stops, 16h 45m",
+            from: "HYD",
+            to: "ARN",
+            fareEconomy: "₹265,000",
+            fareBusiness: "₹780,500",
+            specialOffer: false,
+            date: "Fri, 10 Jan 2025"
         }
-        const selectedFlightDetails = filteredFlights.filter(flight => selectedFlights.includes(flight.id));
-        navigate('/passenger-details', { state: { selectedFlightDetails } });
-    };
+    ];
 
-    const getColorForClass = (classType) => {
-        switch (classType.toLowerCase()) {
-            case 'economy':
-                return '#6c757d'; // Gray
-            case 'business':
-                return '#007bff'; // Blue
-            case 'first class':
-                return '#28a745'; // Green
-            default:
-                return '#6c757d'; // Default gray
-        }
+    const handleSelectFlight = (flight) => {
+        navigate('/passenger-details', { state: { selectedFlightDetails: flight } });
     };
 
     return (
         <div className="results-container">
-            <h1>Available Flights</h1>
-            <div className="flights-list">
-                {filteredFlights.length > 0 ? (
-                    filteredFlights.map(flight => (
-                        <div key={flight.id} className={`flight-card ${selectedFlights.includes(flight.id) ? 'selected' : ''}`} style={{ borderColor: getColorForClass(flight.class) }}>
-                            <div className="flight-info">
-                                <div className="flight-airline"><strong>{flight.airline}</strong></div>
-                                <div className="flight-route">
-                                    <p><i className="fas fa-plane-departure"></i> {flight.from} ➔ {flight.to}</p>
-                                </div>
-                                <div className="flight-timing">
-                                    <p><i className="fas fa-clock"></i> {flight.departure} at {flight.departureTime} | Return: {flight.return} at {flight.returnTime}</p>
-                                </div>
-                                <div className="flight-stops">
-                                    <p><i className="fas fa-exchange-alt"></i> {flight.stops} Stop{flight.stops !== 1 ? 's' : ''}</p>
-                                </div>
-                                <div className="flight-price">
-                                    <p><strong>Price: ${flight.price.toFixed(2)}</strong></p>
-                                </div>
-                            </div>
-                            <button className={`select-button ${selectedFlights.includes(flight.id) ? 'selected' : ''}`} onClick={() => handleFlightSelect(flight.id)}>
-                                Select
-                            </button>
-                        </div>
-                    ))
-                ) : (
-                    <p>No flights available for the selected criteria.</p>
-                )}
+            <div className="header">
+                <h1>Select your departure flight</h1>
+                {/* Display the "from" and "to" values from the form */}
+                <p className="route">from <span>{from || "Hyderabad"}</span> to <span>{to || "Stockholm"}</span></p>
             </div>
-            <button onClick={handleNext} className="next-button">Next</button>
+
+            <div className="date-selector">
+                <button className="date-option">Tue, 7 Jan ₹262,752</button>
+                <button className="date-option">Wed, 8 Jan ₹239,442</button>
+                <button className="date-option">Thu, 9 Jan ₹200,184</button>
+                <button className="date-option active">Fri, 10 Jan ₹219,712</button>
+                <button className="date-option">Sat, 11 Jan ₹246,320</button>
+                <button className="date-option">Sun, 12 Jan ₹194,466</button>
+                <button className="date-option">Mon, 13 Jan ₹159,092</button>
+            </div>
+
+            <p className="results-count">8 results</p>
+            <p className="fare-info">Fares displayed are for all passengers.</p>
+
+            <div className="flights-list">
+                {flightData.map((flight, index) => (
+                    <div className="flight-card" key={index}>
+                        <div className="flight-details">
+                            <div className="timing">
+                                <p><strong>{flight.departureTime}</strong> — <strong>{flight.arrivalTime}</strong></p>
+                                <p>{flight.stops}</p>
+                            </div>
+                            <div className="route-info">
+                                <p>{flight.from}</p>
+                                <span>→</span>
+                                <p>{flight.to}</p>
+                            </div>
+                        </div>
+                        <div className="fare-section">
+                            <div className="fare economy">
+                                <p>Economy</p>
+                                <p className="fare-amount">{flight.fareEconomy}</p>
+                            </div>
+                            <div className="fare business">
+                                <p>Business</p>
+                                <p className="fare-amount">{flight.fareBusiness}</p>
+                                {flight.specialOffer && <p className="special-offer">Special offer</p>}
+                            </div>
+                        </div>
+                        <button className="select-button" onClick={() => handleSelectFlight(flight)}>Select</button>
+                    </div>
+                ))}
+            </div>
         </div>
     );
-}
+};
 
 export default Results;
